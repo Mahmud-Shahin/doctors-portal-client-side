@@ -17,7 +17,7 @@ const Info = () => {
         cardtitle="Visit our Location"
         description="Rampura, Dhaka"
         img={marker}
-        bgClass="bg-gradient-to-r from-blue-500 to-cyan-500"
+        bgClass="bg-neutral"
       ></InfoCard>
       <InfoCard
         cardtitle="Contacts us"
