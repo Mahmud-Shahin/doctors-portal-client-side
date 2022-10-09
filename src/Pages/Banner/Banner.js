@@ -1,10 +1,11 @@
 import React from "react";
+import slide2 from "../../assets/banner/slide2.jpeg";
 
 const Banner = () => {
   return (
     <div
       className="hero min-h-screen"
-      style={{ backgroundImage: `url("https://placeimg.com/1000/800/arch")` }}
+      style={{ backgroundImage: `url(${slide2})` }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
