@@ -34,14 +34,20 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                 value={format(date, "PP")}
                 className="input input-bordered input-primary w-full max-w-xs"
               />
-              <select
+              {/* <select
                 name="slot"
                 className="select select-bordered w-full max-w-xs"
               >
                 {slots.map((slot) => (
-                  <option value={slot}>{slot}</option>
+                  <option value={slot}> {slot} </option>
                 ))}
+              </select> */}
+
+              <select className="select select-bordered w-full max-w-xs">
+                <option>Han Solo</option>
+                <option>Greedo</option>
               </select>
+
               <input
                 type="text"
                 name="name"
