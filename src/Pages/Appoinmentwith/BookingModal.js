@@ -3,6 +3,7 @@ import React from "react";
 
 const BookingModal = ({ date, treatment, setTreatment }) => {
   const { _id, name, slots } = treatment;
+  console.log(slots, name, _id);
 
   const handlebooking = (event) => {
     event.preventDefault();
@@ -38,9 +39,9 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                 name="slot"
                 className="select select-bordered w-full max-w-xs"
               >
-                {slots.map((slot) => (
-                  <option value={slot}> {slot} </option>
-                ))}
+                {slots.map((slot) => {
+                  <option value={slot}>{slot}</option>;
+                })}
               </select> */}
 
               <select className="select select-bordered w-full max-w-xs">
