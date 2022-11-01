@@ -36,14 +36,14 @@ const Login = () => {
                 <input
                   type="email"
                   placeholder="Your email "
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered  w-full max-w-xs"
                   {...register("email", {
                     required: {
                       value: true,
-                      massage: "Emial is required",
+                      message: "Emial is required",
                     },
                     pattern: {
-                      value: /'[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                      value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
                       message: "please enter valid email address",
                     },
                   })}
@@ -74,7 +74,7 @@ const Login = () => {
                   {...register("password", {
                     required: {
                       value: true,
-                      massage: "password is required",
+                      message: "password is required",
                     },
                     minLength: {
                       value: 8,
@@ -109,7 +109,7 @@ const Login = () => {
               onClick={() => signInWithGoogle()}
               className="btn btn-outline"
             >
-              Continue with google
+              sign in with google
             </button>
           </div>
         </div>
