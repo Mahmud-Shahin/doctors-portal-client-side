@@ -1,20 +1,45 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
+import Loading from "../Shared/Loading";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
-  if (user) {
-    console.log(user);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+  };
+
+  if (gUser || user) {
+    console.log(gUser || user);
   }
+
+  if (loading || gLoading) {
+    return <Loading></Loading>;
+  }
+
+  let sighInError;
+
+  if (error || gError) {
+    sighInError = (
+      <p className="text-red-500">{error?.message || gError?.message}</p>
+    );
+  }
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -96,6 +121,8 @@ const Login = () => {
                   )}
                 </label>
               </div>
+
+              {sighInError}
 
               <input
                 className="btn w-full max-w-xs"
