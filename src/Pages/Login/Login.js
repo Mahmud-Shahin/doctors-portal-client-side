@@ -6,7 +6,7 @@ import {
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -25,15 +25,19 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password);
   };
 
+  let sighInError;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   if (gUser || user) {
-    console.log(gUser || user);
+    navigate(from, { replace: true });
   }
 
   if (loading || gLoading) {
     return <Loading></Loading>;
   }
-
-  let sighInError;
 
   if (error || gError) {
     sighInError = (
