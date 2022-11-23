@@ -7,13 +7,14 @@ import { toast } from "react-toastify";
 const BookingModal = ({ date, treatment, setTreatment }) => {
   const [user, loading] = useAuthState(auth);
   const { _id, name, slots } = treatment;
-  console.log(slots, name, _id);
+
   const formattedDate = format(date, "pp");
 
   const handlebooking = (event) => {
     event.preventDefault();
     const slot = event.target.slot.value;
     console.log(_id, name, slot);
+    setTreatment(null);
 
     const booking = {
       treatmentId: _id,
@@ -50,8 +51,56 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
           >
             ✕
           </label>
-          <h3 className="font-bold text-lg text-secondary">{name}</h3>
-          <p className="py-4">
+          <h3 className="font-bold text-lg text-secondary">
+            Booking for : {name}
+          </h3>
+
+          <form
+            action=""
+            onSubmit={handlebooking}
+            className="grid grid-cols-1 gap-3 justify-items-center mt-3"
+          >
+            <input
+              type="text"
+              disabled
+              value={format(date, "PP")}
+              className="input input-bordered input-primary w-full max-w-xs"
+            />
+            <select
+              name="slot"
+              className="select select-bordered w-full max-w-xs"
+            >
+              {slots.map((slot) => (
+                <option value={slot}>{slot}</option>
+              ))}
+            </select>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              className="input input-bordered input-primary w-full max-w-xs"
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="Your email"
+              className="input input-bordered input-primary w-full max-w-xs"
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone number"
+              className="input input-bordered input-primary w-full max-w-xs"
+            />
+            <input
+              type="submit"
+              placeholder="submit"
+              className="btn btn-secondary input-primary w-full max-w-xs"
+            />
+          </form>
+
+          {/* <p className="py-4">
+
             <form
               onSubmit={handlebooking}
               className="grid grid-cols-1 gap-2 justify-items-center mt-2"
@@ -62,7 +111,9 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                 value={format(date, "PP")}
                 className="input input-bordered input-primary w-full max-w-xs"
               />
-              {/* <select
+
+
+              <select
                 name="slot"
                 className="select select-bordered w-full max-w-xs"
               >
@@ -71,17 +122,17 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                     {slot}
                   </option>;
                 })}
-              </select> */}
+              </select>
 
-              <select className="select select-bordered w-full max-w-xs">
+              {/* <select className="select select-bordered w-full max-w-xs">
                 <option> 08.00 AM - 08.30 AM</option>
                 <option>08.30 AM - 09.00 AM</option>
                 <option>09.00 AM - 9.30 AM</option>
                 <option>09.30 AM - 10.00 AM</option>
                 <option>10.00 AM - 10.30 AM</option>
                 <option>10.30 AM - 11.00 AM</option>
-              </select>
-
+              </select> */}
+          {/* 
               <input
                 type="text"
                 name="name"
@@ -108,7 +159,8 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                 className="input input-bordered input-primary w-full max-w-xs btn btn-secondary"
               />
             </form>
-          </p>
+
+            </p>  */}
         </div>
       </div>
     </div>
