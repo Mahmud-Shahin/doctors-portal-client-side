@@ -70,19 +70,24 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
               name="slot"
               className="select select-bordered w-full max-w-xs"
             >
-              {slots.map((slot) => (
-                <option value={slot}>{slot}</option>
+              {slots.map((slot, index) => (
+                <option key={index} value={slot}>
+                  {slot}
+                </option>
               ))}
             </select>
             <input
               type="text"
               name="name"
-              placeholder="Your name"
+              disabled
+              value={user?.displayName}
               className="input input-bordered input-primary w-full max-w-xs"
             />
             <input
               type="text"
               name="email"
+              disabled
+              value={user?.email}
               placeholder="Your email"
               className="input input-bordered input-primary w-full max-w-xs"
             />
@@ -98,69 +103,6 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
               className="btn btn-secondary input-primary w-full max-w-xs"
             />
           </form>
-
-          {/* <p className="py-4">
-
-            <form
-              onSubmit={handlebooking}
-              className="grid grid-cols-1 gap-2 justify-items-center mt-2"
-            >
-              <input
-                type="text"
-                disabled
-                value={format(date, "PP")}
-                className="input input-bordered input-primary w-full max-w-xs"
-              />
-
-
-              <select
-                name="slot"
-                className="select select-bordered w-full max-w-xs"
-              >
-                {slots.map((slot, index) => {
-                  <option key={index} value={slot}>
-                    {slot}
-                  </option>;
-                })}
-              </select>
-
-              {/* <select className="select select-bordered w-full max-w-xs">
-                <option> 08.00 AM - 08.30 AM</option>
-                <option>08.30 AM - 09.00 AM</option>
-                <option>09.00 AM - 9.30 AM</option>
-                <option>09.30 AM - 10.00 AM</option>
-                <option>10.00 AM - 10.30 AM</option>
-                <option>10.30 AM - 11.00 AM</option>
-              </select> */}
-          {/* 
-              <input
-                type="text"
-                name="name"
-                disabled
-                value={user?.displayName}
-                className="input input-bordered input-primary w-full max-w-xs"
-              />
-              <input
-                type="text"
-                name="email"
-                disabled
-                value={user?.email}
-                className="input input-bordered input-primary w-full max-w-xs"
-              />
-              <input
-                type="text"
-                name="phone"
-                placeholder="phone"
-                className="input input-bordered input-primary w-full max-w-xs"
-              />
-              <input
-                type="submit"
-                placeholder="submit"
-                className="input input-bordered input-primary w-full max-w-xs btn btn-secondary"
-              />
-            </form>
-
-            </p>  */}
         </div>
       </div>
     </div>
