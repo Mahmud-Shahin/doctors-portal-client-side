@@ -30,9 +30,9 @@ const MyAppoinment = () => {
             </tr>
           </thead>
           <tbody>
-            {appoinments.map((a) => (
+            {appoinments.map((a, index) => (
               <tr className="hover">
-                <th>2</th>
+                <th>{index + 1}</th>
                 <td>{a.patientName}</td>
                 <td>{a.date}</td>
                 <td>{a.slot}</td>
